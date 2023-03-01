@@ -38,17 +38,6 @@ public class BoardController {
 			, HttpSession session
 			, BoardVo vo
 			) {
-		
-//		ModelAndView mv1 = new ModelAndView();
-//		mv1.setViewName("insert");
-//		
-//		HttpSession session2 = req.getSession();
-//		session2.setAttribute("lgnss", session2);
-		
-//		mv.addObject("test", "test value");
-//		mv.setViewName("redirect:/boardinsert");
-//		return mv;
-//		return "boardinsert";
 		return;
 	}
 	
