@@ -16,6 +16,9 @@ public class BoardServiceImp1 implements BoardService{
 	
 	@Override
 	public int insert(BoardVo vo) {
+		if(vo.getBoardNum() != 0) {
+			dao.updateForReply(vo.getBoardNum());
+		}
 		return dao.insert(vo);
 	}
 
@@ -30,8 +33,23 @@ public class BoardServiceImp1 implements BoardService{
 	}
 
 	@Override
-	public int selectOne(int boardNum) {
-		return dao.selectOne(boardNum);
+	public BoardVo selectOne(int boardNum, String writer) {
+		BoardVo result = dao.selectOne(boardNum);
+		if(!result.getBoardWriter().equals(writer)) {
+			dao.updateReadCount(boardNum);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<BoardVo> selectList(int currentPage, int limit, String searchWord) {
+		return dao.selectList(currentPage, limit, searchWord);
+	}
+
+	@Override
+	public int selectOneCount(String searchWord) {
+		return dao.selectOneCount();
 	}
 
 	@Override
@@ -39,10 +57,6 @@ public class BoardServiceImp1 implements BoardService{
 		return dao.selectList();
 	}
 
-	@Override
-	public int selectOneCount() {
-		return dao.selectOneCount();
-	}
 	
 
 }

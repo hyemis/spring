@@ -11,11 +11,18 @@ public interface BoardService {
 	
 	public int update(BoardVo vo);
 	
+//	public int updateForReply(int boardNum);
+	
 	public int delete(int boardNum);
 	
-	public int selectOne(int boardNum);
+	public BoardVo selectOne(int boardNum, String writer);
+//	public int updateReadCount(int boardNum);
 	
+	// 전체 조회 
 	public List<BoardVo> selectList();
 	
-	public int selectOneCount();
+	// 페이징 처리 조회 
+	public List<BoardVo> selectList(int currentPage, int limit, String searchWord);
+	
+	public int selectOneCount(String searchWord);
 }
