@@ -35,6 +35,7 @@ public class BoardServiceImp1 implements BoardService{
 	@Override
 	public BoardVo selectOne(int boardNum, String writer) {
 		BoardVo result = dao.selectOne(boardNum);
+		
 		if(!result.getBoardWriter().equals(writer)) {
 			dao.updateReadCount(boardNum);
 		}
@@ -49,13 +50,25 @@ public class BoardServiceImp1 implements BoardService{
 
 	@Override
 	public int selectOneCount(String searchWord) {
-		return dao.selectOneCount();
+		return dao.selectOneCount(searchWord);
 	}
 
 	@Override
 	public List<BoardVo> selectList() {
 		return dao.selectList();
 	}
+
+	@Override
+	public int selectOneCount() {
+		return dao.selectOneCount();
+	}
+
+	@Override
+	public List<BoardVo> selectList(int currentPage, int limit) {
+		return dao.selectList(currentPage, limit);
+	}
+	
+
 
 	
 
